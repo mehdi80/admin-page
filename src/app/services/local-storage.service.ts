@@ -7,7 +7,7 @@ export class LocalStorageService {
 
   constructor() { }
 
-  setLocalStorage<T>(key: string, value: T) {
+  setLocalStorage<T>(key: string, value: T):void {
     if (!key) {
       throw 'key is required!';
     } else {
@@ -16,7 +16,7 @@ export class LocalStorageService {
   }
 
   getLocalStorage(key: string) {
-    const item = localStorage.getItem(key);
+    const item:string|null = localStorage.getItem(key);
     if (!item) {
       return null;
     } else {
@@ -24,7 +24,7 @@ export class LocalStorageService {
     }
   }
 
-  clearLocalStorage(key: string | null) {
+  clearLocalStorage(key: string | null):void {
     if (!key) {
       localStorage.clear();
     } else {
