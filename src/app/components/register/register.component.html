@@ -1,14 +1,18 @@
 <div class=" p-8 bg-green-400 rounded-3xl shadow-xl hover:scale-105 max-w-md w-full">
   <h1 class="text-4xl text-green-100 font-bold text-center mb-8 neon-text">Sign Up</h1>
-  <form class="space-y-6">
+  <form class="space-y-6" (ngSubmit)="onSubmit()">
     <div class="flex flex-row gap-2">
       <input
         type="text"
         placeholder="First Name"
+        required
+        [(ngModel)]="name"
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
       <input
         type="text"
+        required
+        [(ngModel)]="lastName"
         placeholder="Last Name"
         class=" w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
@@ -16,6 +20,8 @@
     <div class="flex flex-row">
       <input
         type="text"
+        required
+        [(ngModel)]="username"
         placeholder="Username"
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
@@ -23,11 +29,15 @@
     <div class="flex flex-row gap-2">
       <input
         type="text"
+        required
+        [(ngModel)]="email"
         placeholder="Email"
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
       <input
         type="text"
+        required
+        [(ngModel)]="phoneNumber"
         placeholder="Phone Number"
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
@@ -35,6 +45,8 @@
     <div class="flex flex-row">
       <input
         type="password"
+        required
+        [(ngModel)]="password"
         placeholder="Password"
         class="w-full text-green-400 bg-green-100 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
