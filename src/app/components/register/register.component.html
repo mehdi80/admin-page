@@ -3,6 +3,8 @@
   <form class="space-y-6" (ngSubmit)="onSubmit()">
     <div class="flex flex-row gap-2">
       <input
+        id="name"
+        name="name"
         type="text"
         placeholder="First Name"
         required
@@ -10,6 +12,8 @@
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
       <input
+        id="lastName"
+        name="lastName"
         type="text"
         required
         [(ngModel)]="lastName"
@@ -19,6 +23,8 @@
     </div>
     <div class="flex flex-row">
       <input
+        id="userName"
+        name="userName"
         type="text"
         required
         [(ngModel)]="username"
@@ -28,13 +34,17 @@
     </div>
     <div class="flex flex-row gap-2">
       <input
-        type="text"
+        id="email"
+        name="email"
+        type="email"
         required
         [(ngModel)]="email"
         placeholder="Email"
         class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
 
       <input
+        id="phone"
+        name="phone"
         type="text"
         required
         [(ngModel)]="phoneNumber"
@@ -44,6 +54,8 @@
     </div>
     <div class="flex flex-row">
       <input
+        id="password"
+        name="password"
         type="password"
         required
         [(ngModel)]="password"

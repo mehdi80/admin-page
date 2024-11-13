@@ -12,16 +12,16 @@ import {AuthService} from "../../services/auth.service";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  name = '';
-  lastName = '';
-  username = '';
-  email = '';
-  phoneNumber = +'';
-  password = '';
+  name:string = '';
+  lastName:string = '';
+  username:string = '';
+  email :string= '';
+  phoneNumber:number = +'';
+  password:string = '';
 
   constructor(private authService: AuthService) {}
 
-  onSubmit() {
+  onSubmit():void {
     this.authService.register(
       this.name,
       this.lastName,
