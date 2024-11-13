@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) {}
 
-  onSubmit() {
+  onSubmit():void {
     this.authService.login(this.username, this.password);
   }
 }

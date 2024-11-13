@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { UserModel } from '../models/user';
+import { LocalStorageUser } from '../models/local-storage-user';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -12,16 +12,16 @@ export class AuthService {
     private router: Router
   ) {}
 
-  private getUserLists(): UserModel[] {
+  private getUserLists(): LocalStorageUser[] {
     return this.localStorageService.getLocalStorage('users');
   }
 
   login(username: string, password: string) {
-    const prevUsers: Array<UserModel> = this.getUserLists();
+    const prevUsers: Array<LocalStorageUser> = this.getUserLists();
 
     if (prevUsers && prevUsers.length > 0) {
       const user = prevUsers.find(
-        (user: UserModel) =>
+        (user: LocalStorageUser) =>
           user.username === username && user.password === password
       );
 
@@ -42,9 +42,9 @@ export class AuthService {
     phoneNumber: number,
     password: string
   ) {
-    const prevUsers: Array<UserModel> = this.getUserLists();
+    const prevUsers: Array<LocalStorageUser> = this.getUserLists();
     const userId = prevUsers ? prevUsers.length + 1 : 1;
-    const userObj: UserModel = {
+    const userObj: LocalStorageUser = {
       id: userId,
       name: name,
       lastName: lastName,
@@ -56,12 +56,12 @@ export class AuthService {
 
     if (prevUsers && prevUsers.length > 0) {
       prevUsers.push(userObj);
-      this.localStorageService.setLocalStorage<Array<UserModel>>(
+      this.localStorageService.setLocalStorage<Array<LocalStorageUser>>(
         'users',
         prevUsers
       );
     } else {
-      this.localStorageService.setLocalStorage<Array<UserModel>>('users', [
+      this.localStorageService.setLocalStorage<Array<LocalStorageUser>>('users', [
         userObj,
       ]);
     }
