@@ -17,14 +17,15 @@ export class MergeUserService {
 
   getCombinedUsers():Observable<(LocalStorageUser|UsersApi)[]>{
     return forkJoin([
+      this.apiUser.getUsers(),
       new Observable<LocalStorageUser[]>(observer => {
         observer.next(this.localStorageUserService.getLocalStorage('users'));
         observer.complete();
       }),
-      this.apiUser.getUsers(),
+
     ]).pipe(
-      map(([localStorageUsers, apiUsers]) => {
-        return [...localStorageUsers, ...apiUsers];
+      map(([apiUsers,localStorageUsers]) => {
+        return [...apiUsers, ...localStorageUsers ];
       })
     )
   }

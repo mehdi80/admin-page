@@ -1,0 +1,23 @@
+<div class=" vh-100 d-flex justify-content-center align-items-center">
+
+  <div class="card w-25 " *ngIf="selectedUser">
+    <img src="https://via.placeholder.com/150/92c952" class="card-img-top" alt="...">
+    <ul class="list-group list-group-flush overflow-hidden ">
+      <div class="row mx-2">
+        <div class="col-12 h3 ">{{selectedUser.name}}</div>
+        <div class="col-6 my-2">Username: {{ selectedUser.username }}</div>
+      </div>
+      <div class="row mx-2">
+        <div class="col-6 my-2">Email: {{ selectedUser.email}}</div>
+        <div class="col-6 my-2">Phone: {{ (selectedUser.phoneNumber || selectedUser.phone)}}</div>
+      </div>
+      <div class="row m-2">
+        <div class="col-12 ">Address: {{ selectedUser.address?.street}} {{ selectedUser.address?.city}}</div>
+      </div>
+      <div class="row d-flex justify-content-center mt-4">
+        <a routerLink='edit' class="btn btn-primary">Edit</a>
+      </div>
+    </ul>
+
+  </div>
+</div>

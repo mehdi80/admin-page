@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 
@@ -12,18 +12,19 @@ import {AuthService} from "../../services/auth.service";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  name:string = '';
-  lastName:string = '';
-  username:string = '';
-  email :string= '';
-  phoneNumber:number = +'';
-  password:string = '';
+  firstName: string = '';
+  lastName: string = '';
+  username: string = '';
+  email: string = '';
+  phoneNumber: number = +'';
+  password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
-  onSubmit():void {
+  onSubmit(): void {
     this.authService.register(
-      this.name,
+      this.firstName,
       this.lastName,
       this.username,
       this.email,

@@ -35,19 +35,18 @@ export class AuthService {
   }
 
   register(
-    name: string,
-    lastName: string,
-    username: string,
+    firstName:string,
+    lastName:string,
+    username:string,
     email: string,
     phoneNumber: number,
     password: string
   ) {
     const prevUsers: Array<LocalStorageUser> = this.getUserLists();
-    const userId = prevUsers ? prevUsers.length + 1 : 1;
+    const userId:number = prevUsers ? prevUsers.length + 1 : 11;
     const userObj: LocalStorageUser = {
       id: userId,
-      name: name,
-      lastName: lastName,
+      name: firstName + " " + lastName,
       username: username,
       email: email,
       phoneNumber: phoneNumber,
@@ -67,7 +66,7 @@ export class AuthService {
     }
 
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
-    this.router.navigate(['/']);
+    this.router.navigate(['/user-list']);
     alert(`Welcome ${username}`);
   }
 
