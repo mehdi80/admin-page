@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { LocalStorageUser } from '../models/local-storage-user';
 import { Router } from '@angular/router';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private currentUsername: string | null = null;
+  private loggedInSubject:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  loggedIn$ = this.loggedInSubject.asObservable();
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router
   ) {}
 
+
   private getUserLists(): LocalStorageUser[] {
     return this.localStorageService.getLocalStorage('users');
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string):void {
     const prevUsers: Array<LocalStorageUser> = this.getUserLists();
 
     if (prevUsers && prevUsers.length > 0) {
@@ -26,7 +31,9 @@ export class AuthService {
       );
 
       if (user) {
+        this.currentUsername=user.name;
         this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
+        this.loggedInSubject.next(true);
         this.router.navigate(['/user-list']);
         return;
       }
@@ -64,18 +71,26 @@ export class AuthService {
         userObj,
       ]);
     }
-
+    this.currentUsername = firstName + " " + lastName;
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
+    this.loggedInSubject.next(true);
     this.router.navigate(['/user-list']);
     alert(`Welcome ${username}`);
   }
 
-  logout() {
+  logout():void {
+    this.currentUsername =null;
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', false);
+    this.loggedInSubject.next(false);
     this.router.navigate(['/login']);
+  }
+
+  getCurrentUsername(): string | null {
+    return this.currentUsername;
   }
 
   isLoggedIn(): boolean {
     return !!this.localStorageService.getLocalStorage('isLoggedIn');
   }
+
 }
