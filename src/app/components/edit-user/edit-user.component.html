@@ -1,0 +1,26 @@
+<div class="container">
+  <form class="w-75 row mt-4 g-3" [formGroup]="editForm" (ngSubmit)="submit()">
+    <div class="col-md-6 ">
+      <label class="form-label" for="name">Name:</label>
+      <input class="form-control" id="name" type="text" formControlName="name">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="userName">User name:</label>
+      <input class="form-control" id="userName" type="email" formControlName="userName">
+    </div >
+    <div class="col-md-6">
+      <label class="form-label" for="email">Email:</label>
+      <input class="form-control" id="email" type="email" formControlName="email">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="phone">Phone:</label>
+      <input class="form-control" id="phone" type="email" formControlName="phone">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="address">Address:</label>
+      <input class="form-control" id="address" type="email" formControlName="address">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!editForm.valid">Edit User</button>
+  </form>
+</div>
+

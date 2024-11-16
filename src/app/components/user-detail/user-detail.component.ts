@@ -4,6 +4,7 @@ import {MergeUserService} from "../../services/merge-user.service";
 import {NgIf} from "@angular/common";
 import {LocalStorageUser} from "../../models/local-storage-user";
 import {UsersApi} from "../../models/api-user";
+import {SharedUserService} from "../../services/shared-user.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -21,17 +22,16 @@ export class UserDetailComponent implements OnInit {
   public selectedUser: any;
   constructor(
     private route: ActivatedRoute,
-    private combinedService:MergeUserService
-   // private sharedUser:SharedUserService
+    private combinedService:MergeUserService,
+    private sharedUser:SharedUserService
     ) {}
 
 
   ngOnInit(): void {
     this.combinedService.getCombinedUsers().subscribe(response => {
       this.users = response;
-      console.log(this.users);
       this.findUser()
-      //this.sharedUser.setSharedUser(this.selectedUser)
+      this.sharedUser.setSharedUser(this.selectedUser)
     }, error => {
       console.error('Error fetching users', error);
     });

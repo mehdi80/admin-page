@@ -28,7 +28,7 @@ export class ApiUserService {
   //   return  this.http.get(`${this.url}?query=${query}`);
   // }
 
-  updateUser(user:LocalStorageUser,userId:string):Observable<LocalStorageUser>{
+  updateUser(user:any,userId:string):Observable<LocalStorageUser>{
     const putUrl: string =`${this.url}/${userId}`;
     const headers:HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' });
     return this.http.put<LocalStorageUser>(putUrl,user,{headers})
