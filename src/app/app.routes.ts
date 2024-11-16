@@ -6,6 +6,7 @@ import {UserListComponent} from "./components/user-list/user-list.component";
 import {authGuard} from "./guards/auth.guard";
 import {UserDetailComponent} from "./components/user-detail/user-detail.component";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
+import {AdminComponent} from "./components/admin/admin.component";
 
 export const routes: Routes = [
   {
@@ -14,9 +15,13 @@ export const routes: Routes = [
     children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'user-list', component: UserListComponent, canActivate: [authGuard]},
-      {path: 'user-list/:id', component: UserDetailComponent,canActivate: [authGuard]},
-      {path: 'edit-user', component: EditUserComponent, canActivate: [authGuard]}
+      {
+        path: 'admin', component: AdminComponent,canActivate:[authGuard], children: [
+          {path: 'user-list', component: UserListComponent, canActivate: [authGuard]},
+          {path: 'user-list/:id', component: UserDetailComponent, canActivate: [authGuard]},
+          {path: 'user-list/:id/edit-user', component: EditUserComponent, canActivate: [authGuard]}
+        ]
+      },
     ]
   },
 

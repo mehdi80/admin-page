@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { LocalStorageService } from './local-storage.service';
-import { LocalStorageUser } from '../models/local-storage-user';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {LocalStorageService} from './local-storage.service';
+import {LocalStorageUser} from '../models/local-storage-user';
+import {Router} from '@angular/router';
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({
@@ -9,8 +9,9 @@ import {BehaviorSubject} from "rxjs";
 })
 export class AuthService {
   private currentUsername: string | null = null;
-  private loggedInSubject:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   loggedIn$ = this.loggedInSubject.asObservable();
+
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router
@@ -22,36 +23,52 @@ export class AuthService {
     return this.localStorageService.getLocalStorage('users');
   }
 
-  login(username: string, password: string):void {
+  login(username: string, password: string): void {
     const prevUsers: Array<LocalStorageUser> = this.getUserLists();
 
     if (prevUsers && prevUsers.length > 0) {
       const user = prevUsers.find(
         (user: LocalStorageUser) =>
-          user.username === username && user.password === password
-      );
-
+          user.username === username
+      )
       if (user) {
-        this.currentUsername=user.name;
-        this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
-        this.loggedInSubject.next(true);
-        this.router.navigate(['/user-list']);
-        return;
+        if (user.password === password) {
+          this.currentUsername = user.name;
+          this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
+          this.loggedInSubject.next(true);
+          this.router.navigate(['admin/user-list']);
+          return;
+        } else {
+          alert('رمز عبور اشتباه است')
+          return;
+        }
       }
+      alert('کاربر یافت نشد');
     }
-    alert('نام کاربری یا رمز عبور اشتباه است');
   }
 
   register(
-    firstName:string,
-    lastName:string,
-    username:string,
-    email: string,
-    phoneNumber: number,
-    password: string
+    firstName
+      :
+      string,
+    lastName
+      :
+      string,
+    username
+      :
+      string,
+    email
+      :
+      string,
+    phoneNumber
+      :
+      number,
+    password
+      :
+      string
   ) {
     const prevUsers: Array<LocalStorageUser> = this.getUserLists();
-    const userId:number = prevUsers ? prevUsers.length + 1 : 11;
+    const userId: number = prevUsers ? prevUsers.length + 1 : 11;
     const userObj: LocalStorageUser = {
       id: userId,
       name: firstName + " " + lastName,
@@ -79,18 +96,24 @@ export class AuthService {
     alert(`Welcome ${username}`);
   }
 
-  logout():void {
-    this.currentUsername =null;
+  logout()
+    :
+    void {
+    this.currentUsername = null;
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', false);
     this.loggedInSubject.next(false);
     this.router.navigate(['/login']);
   }
 
-  getCurrentUsername(): string | null {
+  getCurrentUsername()
+    :
+    string | null {
     return this.currentUsername;
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn()
+    :
+    boolean {
     return !!this.localStorageService.getLocalStorage('isLoggedIn');
   }
 
