@@ -14,7 +14,8 @@ export class AuthService {
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {}
+  ) {
+  }
 
 
   private getUserLists(): LocalStorageUser[] {

@@ -1,4 +1,14 @@
 <div class="mt-44 m-10">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <form class="d-flex" role="search" (ngSubmit)="onSearch($event)">
+        <input class="form-control me-2" type="search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}"
+               placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
   <table class="font-inter w-full table-auto border-separate border-spacing-y-1 overflow-scroll text-left md:overflow-auto">
     <thead class="w-full rounded-lg bg-green-100 text-green-400 text-base font-semibold text-white">
     <tr class="">
@@ -9,7 +19,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users" class="cursor-pointer bg-green-200 text-green-500 drop-shadow-[0_0_15px_rgba(44,56,68,0.07)] hover:shadow-xl">
+    <tr *ngFor="let user of searchedUser" class="cursor-pointer bg-green-200 text-green-500 drop-shadow-[0_0_15px_rgba(44,56,68,0.07)] hover:shadow-xl">
       <td class="rounded-l-lg py-4 pl-3 text-sm font-normal">{{user.id}}</td>
       <td class="px-1 py-4 text-sm font-normal ">{{user.name}}</td>
       <td class="px-1 py-4 text-sm font-normal ">{{user.email}}</td>
