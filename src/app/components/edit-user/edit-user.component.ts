@@ -50,8 +50,6 @@ export class EditUserComponent implements OnInit {
   submit():void {
     const sendData:string = JSON.stringify(this.editForm.value);
     const userId = this.userShared.id;
-    console.log(userId)
-    console.log(sendData);
 
     this.apiUser.updateUser(sendData,userId).subscribe(
       response => {

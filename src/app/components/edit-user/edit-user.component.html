@@ -1,26 +1,41 @@
-<div class="container">
-  <form class="w-75 row mt-4 g-3" [formGroup]="editForm" (ngSubmit)="submit()">
-    <div class="col-md-6 ">
-      <label class="form-label" for="name">Name:</label>
-      <input class="form-control" id="name" type="text" formControlName="name">
+<div class="p-8 bg-green-400 rounded-3xl shadow-xl hover:scale-105 max-w-md w-full">
+  <form class="space-y-6" [formGroup]="editForm" (ngSubmit)="submit()">
+    <div class="">
+      <label class="text-green-100" for="name">Name:</label>
+      <input
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300"
+        id="name" type="text" formControlName="name">
     </div>
-    <div class="col-md-6">
-      <label class="form-label" for="userName">User name:</label>
-      <input class="form-control" id="userName" type="email" formControlName="userName">
-    </div >
-    <div class="col-md-6">
-      <label class="form-label" for="email">Email:</label>
-      <input class="form-control" id="email" type="email" formControlName="email">
+    <div>
+      <label class="text-green-100" for="userName">User name:</label>
+      <input
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300"
+        id="userName" type="email" formControlName="userName">
     </div>
-    <div class="col-md-6">
-      <label class="form-label" for="phone">Phone:</label>
-      <input class="form-control" id="phone" type="email" formControlName="phone">
+    <div class="flex flex-row gap-2">
+      <div class="">
+        <label class="text-green-100" for="email">Email:</label>
+        <input
+          class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300"
+          id="email" type="email" formControlName="email">
+      </div>
+      <div class="">
+        <label class="text-green-100" for="phone">Phone:</label>
+        <input
+          class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300"
+          id="phone" type="email" formControlName="phone">
+      </div>
     </div>
-    <div class="mb-3">
-      <label class="form-label" for="address">Address:</label>
-      <input class="form-control" id="address" type="email" formControlName="address">
+    <div class="">
+      <label class="text-green-100" for="address">Address:</label>
+      <input
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300"
+        id="address" type="email" formControlName="address">
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!editForm.valid">Edit User</button>
+    <button
+      class="w-full bg-green-200 font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none"
+      type="submit" [disabled]="!editForm.valid">Edit User
+    </button>
   </form>
 </div>
 
