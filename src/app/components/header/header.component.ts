@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {NgIf} from "@angular/common";
 import {Subscription} from "rxjs";
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit{
   isLoggedIn: boolean = false;
   private subscription!: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.subscription = this.authService.loggedIn$.subscribe(isLoggedIn => {
@@ -31,6 +31,13 @@ export class HeaderComponent implements OnInit{
         this.currentUserName = null;
       }
     });
+    this.getRouteParams()
+  }
+
+
+  getRouteParams(): void {
+    const ruteParam = this.activatedRoute.snapshot.params;
+    console.log(ruteParam)
   }
 
   logout(): void {
