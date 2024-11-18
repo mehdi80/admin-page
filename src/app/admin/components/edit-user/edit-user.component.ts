@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {SharedUserService} from "../../services/shared-user.service";
-import {ApiUserService} from "../../services/api-user.service";
+import {ApiUserService} from "../../../services/api-user.service";
+import {SharedUserService} from "../../../services/shared-user.service";
+
 
 @Component({
   selector: 'app-edit-user',

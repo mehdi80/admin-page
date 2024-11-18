@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {MergeUserService} from "../../services/merge-user.service";
+
 import {NgIf} from "@angular/common";
-import {LocalStorageUser} from "../../models/local-storage-user";
-import {UsersApi} from "../../models/api-user";
-import {SharedUserService} from "../../services/shared-user.service";
+import {UsersApi} from "../../../models/api-user";
+import {LocalStorageUser} from "../../../models/local-storage-user";
+import {MergeUserService} from "../../../services/merge-user.service";
+import {SharedUserService} from "../../../services/shared-user.service";
 
 @Component({
   selector: 'app-user-detail',

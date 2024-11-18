@@ -9,13 +9,9 @@ export const routes: Routes = [
     loadComponent: () => import('./shell/shell.component').then(sell => sell.ShellComponent),
     children: [
       {
-        path: 'login',
-        loadComponent:() => import('./components/login/login.component').then( login => login.LoginComponent),
+        path: 'auth',
+        loadChildren:() => import('./modules/auth.route').then(auth => auth.authRoutes),
         },
-      {
-        path: 'register',
-        loadComponent: () => import('./components/register/register.component').then( register => register.RegisterComponent),
-      },
       {
         path: 'admin',
         canActivate:[authGuard],

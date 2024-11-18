@@ -91,7 +91,7 @@ export class AuthService {
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', false);
     this.localStorageService.clearLocalStorage('user')
     this.loggedInSubject.next(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']);
   }
 
   getCurrentUsername(): string | null {

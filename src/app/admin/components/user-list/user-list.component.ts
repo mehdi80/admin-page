@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {LocalStorageUser} from "../../models/local-storage-user";
-import {UsersApi} from "../../models/api-user";
-import {MergeUserService} from "../../services/merge-user.service";
+
 import {NgForOf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {LocalStorageUser} from "../../../models/local-storage-user";
+import {UsersApi} from "../../../models/api-user";
+import {MergeUserService} from "../../../services/merge-user.service";
 
 @Component({
   selector: 'app-user-list',
