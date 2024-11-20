@@ -9,6 +9,10 @@ export const routes: Routes = [
     loadComponent: () => import('./shell/shell.component').then(sell => sell.ShellComponent),
     children: [
       {
+        path:'client',
+        loadChildren:() => import('./modules/client.routes').then(client => client.clientRoutes)
+      },
+      {
         path: 'auth',
         loadChildren:() => import('./modules/auth.route').then(auth => auth.authRoutes),
         },
@@ -17,11 +21,6 @@ export const routes: Routes = [
         canActivate:[authGuard],
         loadChildren:() => import('./modules/admin.routes').then(admin => admin.adminRoutes)
       },
-      {
-        path:'client',
-        loadChildren:() => import('./modules/client.routes').then(client => client.clientRoutes)
-      }
     ]
   },
-
 ];

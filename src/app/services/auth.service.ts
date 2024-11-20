@@ -83,7 +83,7 @@ export class AuthService {
     this.localStorageService.setLocalStorage<boolean>('isLoggedIn', true);
     this.localStorageService.setLocalStorage('user', name);
     this.loggedInSubject.next(true);
-    this.router.navigate(['/user-list']);
+    this.router.navigate(['admin/user-list']);
     alert(`Welcome ${username}`);
   }
 

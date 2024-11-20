@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {ProductComponent} from "./components/product/product.component";
 
 @Component({
   selector: 'app-client',
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    ProductComponent
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'

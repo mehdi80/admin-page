@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeaderComponent} from "../shared/components/header/header.component";
-import {RouterOutlet} from "@angular/router";
+import {Router, RouterOutlet} from "@angular/router";
+
 
 @Component({
   selector: 'app-shell',
@@ -12,6 +13,10 @@ import {RouterOutlet} from "@angular/router";
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss'
 })
-export class ShellComponent {
+export class ShellComponent implements OnInit {
+  constructor(private router:Router,) {}
 
+  ngOnInit() {
+    this.router.navigate(['/client/products'])
+  }
 }

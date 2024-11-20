@@ -4,7 +4,6 @@ export const authRoutes:Routes = [
   {path:'',
   loadComponent:()=> import('../shared/components/auth/auth.component').then(auth=>auth.AuthComponent)
   },
-
   {
     path:'login',
     loadComponent:()=> import('../shared/components/login/login.component').then(login=>login.LoginComponent)
