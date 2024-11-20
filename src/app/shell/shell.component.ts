@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderComponent} from "../shared/components/header/header.component";
+import {HeaderComponent} from "../admin/components/header/header.component";
 import {Router, RouterOutlet} from "@angular/router";
 
 
@@ -17,6 +17,8 @@ export class ShellComponent implements OnInit {
   constructor(private router:Router,) {}
 
   ngOnInit() {
+    if (this.router.url === '/'){
     this.router.navigate(['/client/products'])
+    }
   }
 }

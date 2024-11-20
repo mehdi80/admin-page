@@ -1,24 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {Component} from '@angular/core';
+import {Router, RouterOutlet} from "@angular/router";
 import {ProductComponent} from "./components/product/product.component";
+import {ClientHeaderComponent} from "./components/client-header/client-header.component";
 
 @Component({
   selector: 'app-client',
   standalone: true,
   imports: [
     RouterOutlet,
-    ProductComponent
+    ProductComponent,
+    ClientHeaderComponent
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
-export class ClientComponent implements OnInit{
-constructor(private activeRoute: ActivatedRoute,) { }
-
-  ngOnInit() {
-  this.activeRoute.params.subscribe(params => {
-    console.log(params['url']);
-  })
-  }
+export class ClientComponent{
 
 }
