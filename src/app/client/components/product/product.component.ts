@@ -1,11 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {GetProductsService} from "../../../services/get-products.service";
 import {Product} from "../../../models/products";
+import {NgForOf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf,
+    RouterLink
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
@@ -24,5 +29,6 @@ export class ProductComponent implements OnInit {
     console.log(this.products);
     });
   }
+
 
 }

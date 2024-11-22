@@ -7,7 +7,11 @@ export const clientRoutes:Routes = [
     children:[
       {
         path:'products',
-        loadComponent:() => import('../client/components/product/product.component').then(product=>product.ProductComponent)
+        loadComponent:() => import('../client/components/product/product.component').then(product=>product.ProductComponent),
+      },
+      {
+        path:'products/:id',
+        loadComponent:()=> import('../client/components/product-detail/product-detail.component').then(detailCopo=>detailCopo.ProductDetailComponent),
       }
     ]
   },

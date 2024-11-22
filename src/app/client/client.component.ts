@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, RouterOutlet} from "@angular/router";
+import { RouterOutlet} from "@angular/router";
 import {ProductComponent} from "./components/product/product.component";
 import {ClientHeaderComponent} from "./components/client-header/client-header.component";
 
