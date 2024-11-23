@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {BasketComponent} from "../client/components/basket/basket.component";
 
 export const clientRoutes:Routes = [
   {
@@ -12,6 +13,9 @@ export const clientRoutes:Routes = [
       {
         path:'products/:id',
         loadComponent:()=> import('../client/components/product-detail/product-detail.component').then(detailCopo=>detailCopo.ProductDetailComponent),
+      },
+      {path:"basket",
+      loadComponent:()=> import('../client/components/basket/basket.component').then(basket=>basket.BasketComponent)
       }
     ]
   },
