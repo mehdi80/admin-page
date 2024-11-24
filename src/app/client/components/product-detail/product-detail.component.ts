@@ -10,7 +10,7 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
@@ -24,9 +24,9 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private activatedRute: ActivatedRoute,
     private productService: GetProductsService,
-    private basketService: BasketService
-  ) {
-  }
+    private basketService: BasketService,
+
+  ) {}
 
   ngOnInit() {
     this.loadProduct()
@@ -45,7 +45,7 @@ export class ProductDetailComponent implements OnInit {
       this.selectedProduct = this.products?.find((product: any): boolean =>
         product.id === productId);
       if (this.selectedProduct) {
-        this.productQuantity = this.selectedProduct.quantity
+        this.productQuantity = this.selectedProduct.quantity;
       }
     });
   }
@@ -63,7 +63,6 @@ export class ProductDetailComponent implements OnInit {
       --this.quantity;
     }
   }
-
   addToBasket() {
     if (this.selectedProduct) {
       this.basketService.addToCart(this.selectedProduct, this.quantity);

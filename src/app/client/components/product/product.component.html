@@ -1,41 +1,50 @@
-<div class="flex flex-wrap justify-center gap-10">
-  <a routerLink="{{product.id}}" *ngFor="let product of products"
-     class="w-72 bg-green-100 shadow-2xl rounded-2xl hover:opacity-80">
-    <div
+
+<div id="search-bar" class="w-80 rounded-md mx-auto mb-12 shadow-2xl">
+  <form class="flex items-center justify-center p-2" role="search" (ngSubmit)="onSearch($event)">
+    <input
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      [(ngModel)]="searchValue"
+      [ngModelOptions]="{standalone: true}"
       class="
-      h-96
-      justify-between
-      p-4
-      rounded-t
-      bg-cover"
-      style="background-image: url('{{product.imageUrl}}')">
+      w-full
+      rounded-md
+      px-2
+      py-1
+      focus:outline-none
+      focus:ring-2
+      focus:ring-green-400
+      focus:border-transparent">
+    <button
+      type="submit"
+      class="
+      bg-green-300
+      text-green-100
+      rounded-md
+      px-4
+      py-1
+      ml-2
+      hover:bg-green-200
+      hover:text-green-400
+      focus:outline-none
+      focus:ring-2">
+      Search
+    </button>
+  </form>
+</div>
+
+<div class="flex flex-wrap justify-center gap-10 ">
+  <div  *ngFor="let product of searchedProduct"
+     class="w-72 bg-green-100 shadow-2xl rounded-2xl hover:opacity-80 cursor-auto">
+    <div routerLink="{{product.id}}" class="rounded-t">
+      <img class="rounded-t" src="{{product.imageUrl}}" alt="product">
     </div>
     <div class="p-4 flex flex-col">
-      <div class="flex">
-        <h1 class="text-green-400 text-start flex-2 mt-1">{{ product.name }}</h1>
+      <div class="flex cursor-auto">
+        <h1 class="text-green-400 text-start flex-2 mt-1 cursor-auto">{{ product.name }}</h1>
         <p class=" flex-1 text-end text-green-400 mt-1">${{ product.price }}</p>
       </div>
-      <!--      <div class=" mt-2">-->
-      <!--        <a-->
-      <!--          routerLink="{{product.id}}"-->
-      <!--          class="-->
-      <!--          py-2-->
-      <!--          px-4-->
-      <!--          shadow-->
-      <!--          bg-green-300-->
-      <!--          hover:bg-green-200-->
-      <!--          hover:text-green-400-->
-      <!--          active:bg-green-200-->
-      <!--          active:text-green-400-->
-      <!--          rounded-->
-      <!--          mt-4-->
-      <!--          w-full-->
-      <!--          flex-->
-      <!--          items-center-->
-      <!--          justify-center">-->
-      <!--          Detail-->
-      <!--        </a>-->
-      <!--      </div>-->
     </div>
-  </a>
+  </div>
 </div>
