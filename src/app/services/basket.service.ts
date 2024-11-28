@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, map} from 'rxjs';
 import {Product} from "../models/products";
 
 interface BasketItem {
@@ -11,57 +11,37 @@ interface BasketItem {
   providedIn: 'root'
 })
 export class BasketService {
-   BasketItemsSubject = new BehaviorSubject<Map<number, BasketItem>>(new Map());
-  cartItems$ = this.BasketItemsSubject.asObservable();
+
+  basketItemsSubject = new BehaviorSubject<Map<number, BasketItem>>(new Map());
+  basketItems$ = this.basketItemsSubject.asObservable();
 
   addToCart(product: Product) {
-    const currentItems = this.BasketItemsSubject.getValue();
-
-    if (currentItems.has(product.id)) {
-      const existingItem = currentItems.get(product.id)!;
-      existingItem.quantity += 1;
-      currentItems.set(product.id, existingItem);
-    } else {
-      currentItems.set(product.id, { product, quantity: 1 });
-    }
-
-    this.BasketItemsSubject.next(new Map(currentItems));
+    this.basketItemsSubject.next(
+      new Map(this.basketItemsSubject.getValue()).set(product.id, { product, quantity: 1 })
+    );
   }
 
-  getTotalItemsCount(): number {
-    const currentItems = this.BasketItemsSubject.getValue();
-    let totalCount = 0;
-    currentItems.forEach(item => totalCount += item.quantity);
-    return totalCount;
+  get basketItemsCount$() {
+    return this.basketItems$.pipe(
+      map((items) =>
+        Array.from(items.values()).reduce((total, item) => total + item.quantity, 0)
+      )
+    );
   }
 
-  decreaseQuantity(product: Product) {
-    const currentItems = this.BasketItemsSubject.getValue();
-
-    if (currentItems.has(product.id)) {
-      const existingItem = currentItems.get(product.id)!;
-      existingItem.quantity -= 1;
+  changeQuantity(product: Product, change: number) {
+    const currentItems = this.basketItemsSubject.getValue();
+    const existingItem = currentItems.get(product.id);
+    if (existingItem) {
+      existingItem.quantity += change;
 
       if (existingItem.quantity <= 0) {
-
         currentItems.delete(product.id);
-      } else {
-        currentItems.set(product.id, existingItem);
       }
+    } else if (change > 0) {
+      currentItems.set(product.id, {product, quantity: change});
 
-      this.BasketItemsSubject.next(new Map(currentItems));
     }
-  }
-
-
-  increaseQuantity(product: Product) {
-    const currentItems = this.BasketItemsSubject.getValue();
-
-    if (currentItems.has(product.id)) {
-      const existingItem = currentItems.get(product.id)!;
-      existingItem.quantity += 1;
-      currentItems.set(product.id, existingItem);
-      this.BasketItemsSubject.next(new Map(currentItems));
-    }
+    this.basketItemsSubject.next(new Map(currentItems));
   }
 }

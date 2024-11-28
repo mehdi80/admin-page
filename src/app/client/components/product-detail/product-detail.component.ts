@@ -61,26 +61,21 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  increaseQuantity(product:Product): void {
-    this.basketService.increaseQuantity(product);
-  }
-
-  decreaseQuantity(product:Product) {
-    this.basketService.decreaseQuantity(product);
-  }
-
   addToBasket() {
-    this.addToBasketSubject.next(this.selectedProduct);
+    this.basketService.changeQuantity(this.selectedProduct,+1);
+  }
+
+  changeQuantity(product: Product, change: number) {
+    this.basketService.changeQuantity(product, change);
   }
 
   isInCart(product: Product): boolean {
-    const cartItems = this.basketService.BasketItemsSubject.getValue();
+    const cartItems = this.basketService.basketItemsSubject.getValue();
     return cartItems.has(product.id);
   }
 
   getProductQuantity(product: Product): number {
-    const cartItems = this.basketService.BasketItemsSubject.getValue();
+    const cartItems = this.basketService.basketItemsSubject.getValue();
     return cartItems.get(product.id)?.quantity || 0;
   }
-
 }

@@ -28,7 +28,7 @@ export class BasketComponent implements OnInit{
   ngOnInit() {
     initFlowbite();
 
-    this.basketService.cartItems$.subscribe((cartItems) => {
+    this.basketService.basketItems$.subscribe((cartItems) => {
       this.cartItems = cartItems;
       this.cartItemsArray = Array.from(cartItems.values());
       this.calculateTotalPrice();
@@ -40,5 +40,9 @@ export class BasketComponent implements OnInit{
     this.cartItemsArray.forEach((item) => {
       this.totalPrice += item.product.price * item.quantity;
     });
+  }
+
+  changeQuantity(product: Product, change: number) {
+    this.basketService.changeQuantity(product, change);
   }
 }

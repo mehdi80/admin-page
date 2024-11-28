@@ -3,13 +3,13 @@
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
       <ng-container>
         <a
-          class="flex items-center hover:bg-green-200 hover:rounded-full hover:w-9 hover:h-9 cursor-pointer"
+          class="flex  items-center hover:bg-green-200 hover:rounded-full hover:w-9 hover:h-9 cursor-pointer"
           data-drawer-target="drawer-body-scrolling"
           data-drawer-show="drawer-body-scrolling"
           data-drawer-body-scrolling="true"
           aria-controls="drawer-body-scrolling">
           <span
-            class="text-green-400 ps-1 self-center ">
+            class="text-green-400 relative ps-1 self-center ">
             <svg
               class="h-6 w-6"
               viewBox="0 0 24 24"
@@ -22,7 +22,23 @@
               <circle cx="20" cy="21" r="1"/>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
             </svg>
+            <div
+              *ngIf="(cartItemsCount$ | async)"
+              class="
+              absolute
+              inline-flex
+              items-center
+              justify-center
+              w-4 h-4
+              text-xs
+              text-white
+              bg-red-500
+              rounded-full
+              -top-1 -end-3 ">
+              {{ cartItemsCount$ | async }}
+            </div>
           </span>
+
         </a>
         <div class="flex items-center lg:order-2">
           <button
