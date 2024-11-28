@@ -4,6 +4,7 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 import {GetProductsService} from "../../../services/get-products.service";
 import {BasketService} from "../../../services/basket.service";
 import {NgIf} from "@angular/common";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-product-detail',
@@ -17,16 +18,26 @@ import {NgIf} from "@angular/common";
 })
 export class ProductDetailComponent implements OnInit {
   products: Product[] | null = null;
-  selectedProduct: Product | undefined;
+  selectedProduct: any;
   quantity: number = 0;
   productQuantity: number =1;
+
+  private addToBasketSubject = new BehaviorSubject<Product | undefined>(undefined);
+  addToBasket$ = this.addToBasketSubject.asObservable();
 
   constructor(
     private activatedRute: ActivatedRoute,
     private productService: GetProductsService,
-    private basketService: BasketService,
+    private basketService: BasketService
 
-  ) {}
+  ) {
+    this.addToBasket$.subscribe((product) => {
+      if (product) {
+        this.basketService.addToCart(product);
+      }
+    });
+
+  }
 
   ngOnInit() {
     this.loadProduct()
@@ -39,10 +50,10 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  findProduct(): void {
+  findProduct() {
     this.activatedRute.params.subscribe((params) => {
       const productId: number = +params['id'];
-      this.selectedProduct = this.products?.find((product: any): boolean =>
+      this.selectedProduct = this.products!.find((product:Product) =>
         product.id === productId);
       if (this.selectedProduct) {
         this.productQuantity = this.selectedProduct.quantity;
@@ -50,23 +61,26 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  increaseQuantity(): void {
-    if (this.quantity <= this.productQuantity) {
-      ++this.quantity;
-      this.basketService.addToCart(this.selectedProduct, this.quantity);
-    }
-
+  increaseQuantity(product:Product): void {
+    this.basketService.increaseQuantity(product);
   }
 
-  decreaseQuantity() {
-    if (this.quantity > 0) {
-      --this.quantity;
-    }
+  decreaseQuantity(product:Product) {
+    this.basketService.decreaseQuantity(product);
   }
+
   addToBasket() {
-    if (this.selectedProduct) {
-      this.basketService.addToCart(this.selectedProduct, this.quantity);
-      ++this.quantity;
-    }
+    this.addToBasketSubject.next(this.selectedProduct);
   }
+
+  isInCart(product: Product): boolean {
+    const cartItems = this.basketService.BasketItemsSubject.getValue();
+    return cartItems.has(product.id);
+  }
+
+  getProductQuantity(product: Product): number {
+    const cartItems = this.basketService.BasketItemsSubject.getValue();
+    return cartItems.get(product.id)?.quantity || 0;
+  }
+
 }

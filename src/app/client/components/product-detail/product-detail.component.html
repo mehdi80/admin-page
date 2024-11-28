@@ -13,7 +13,7 @@
     lg:mx-0">
       <div class="p-4 md:p-7 text-center lg:text-left" *ngIf="selectedProduct">
         <div class="block lg:hidden rounded-full shadow-2xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
-             [style.background-image]="selectedProduct.imageUrl"></div>
+             [style.background-image]="'url(' + selectedProduct.imageUrl +')'"></div>
         <h1 class="text-3xl font-bold pt-8 lg:pt-0">{{ selectedProduct.name }}</h1>
         <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
         <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
@@ -25,7 +25,7 @@
         </p>
 
         <div class="mx-auto lg:mx-0 w-4/5 pt-12 border-b-2 border-green-500 opacity-25"></div>
-        <div class="pt-3 pb-4" *ngIf="!quantity; else sell">
+        <div class="pt-3 pb-4" *ngIf="!isInCart(selectedProduct); else sell">
           <button
             (click)="addToBasket()"
             class="
@@ -65,7 +65,7 @@
 <ng-template #sell >
   <div class="inline-flex items-center mt-2">
   <button
-    (click)="decreaseQuantity()"
+    (click)="decreaseQuantity(selectedProduct)"
     class="rounded-l bg-green-300 text-green-100 hover:text-green-400 hover:bg-green-200 inline-flex items-center px-2 py-1 ">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
          stroke="currentColor">
@@ -74,10 +74,10 @@
   </button>
   <div
     class=" bg-green-300 text-green-100 hover:text-green-400 hover:bg-green-200 inline-flex items-center px-4 py-1 select-none">
-    {{quantity}}
+    {{getProductQuantity(selectedProduct)}}
   </div>
   <button
-    (click)="increaseQuantity()"
+    (click)="increaseQuantity(selectedProduct)"
     class=" rounded-r bg-green-300 text-green-100 hover:text-green-400 hover:bg-green-200 inline-flex items-center px-2 py-1 ">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
          stroke="currentColor">

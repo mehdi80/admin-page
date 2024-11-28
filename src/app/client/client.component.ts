@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterOutlet} from "@angular/router";
 import {ProductComponent} from "./components/product/product.component";
 import {ClientHeaderComponent} from "./components/client-header/client-header.component";
+
+import {BasketComponent} from "./components/basket/basket.component";
 
 @Component({
   selector: 'app-client',
@@ -9,11 +11,14 @@ import {ClientHeaderComponent} from "./components/client-header/client-header.co
   imports: [
     RouterOutlet,
     ProductComponent,
-    ClientHeaderComponent
+    ClientHeaderComponent,
+    BasketComponent
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
-export class ClientComponent{
+export class ClientComponent implements OnInit{
+ngOnInit() {
 
+}
 }

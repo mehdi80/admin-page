@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-client-header',
@@ -12,6 +13,8 @@ import {RouterLink} from "@angular/router";
   templateUrl: './client-header.component.html',
   styleUrl: './client-header.component.scss'
 })
-export class ClientHeaderComponent {
-
+export class ClientHeaderComponent implements OnInit{
+ngOnInit() {
+  initFlowbite();
+}
 }
