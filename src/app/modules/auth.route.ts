@@ -11,6 +11,14 @@ export const authRoutes:Routes = [
       {
         path:'register',
         loadComponent:() =>import('../shared/components/register/register.component').then(register=>register.RegisterComponent)
+      },
+      {
+        path:'client-login',
+        loadComponent:()=>import('../shared/components/client-login/client-login.component').then(clientLogin=>clientLogin.ClientLoginComponent)
+      },
+      {
+        path:'client-register',
+        loadComponent:()=>import('../shared/components/client-register/client-register.component').then(clientRegister=>clientRegister.ClientRegisterComponent)
       }
     ]
   },

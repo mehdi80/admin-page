@@ -41,7 +41,29 @@
 
         </a>
         <div class="flex items-center lg:order-2">
-          <button
+          <ng-container *ngIf="clientLoggedIn; else loggedout">
+            <button
+              (click)="logout()"
+              class="
+           bg-green-400
+           hover:bg-green-300
+           text-green-100
+           font-medium
+           rounded-lg
+           text-sm
+           px-3
+           lg:px-4
+           py-2
+           lg:py-2
+           mr-2
+           focus:outline-none
+            ">
+              logout
+            </button>
+          </ng-container>
+          <ng-template #loggedout>
+            <button
+            routerLink="/auth/client-login"
             class="
            bg-green-400
            hover:bg-green-300
@@ -58,6 +80,8 @@
             ">
             login
           </button>
+          </ng-template>
+
         </div>
       </ng-container>
     </div>

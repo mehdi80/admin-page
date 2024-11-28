@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit{
   isLoggedIn: boolean = false;
   private subscription!: Subscription;
 
-  constructor(private authService: AuthService , private activatedRoute: ActivatedRoute) {}
+  constructor(private authService: AuthService , ) {}
 
   ngOnInit(): void {
     this.subscription = this.authService.loggedIn$.subscribe(isLoggedIn => {

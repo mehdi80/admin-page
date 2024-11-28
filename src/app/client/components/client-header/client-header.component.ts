@@ -4,6 +4,7 @@ import {RouterLink} from "@angular/router";
 import {initFlowbite} from "flowbite";
 import {BasketService} from "../../../services/basket.service";
 import {Observable} from "rxjs";
+import {ClientAuthService} from "../../../services/client-auth.service";
 
 @Component({
   selector: 'app-client-header',
@@ -19,12 +20,20 @@ import {Observable} from "rxjs";
 export class ClientHeaderComponent implements OnInit {
 
   cartItemsCount$: Observable<number>;
-
-  constructor(private basketService: BasketService) {
+  clientLoggedIn: boolean = false;
+  constructor(private basketService: BasketService,private clientAuth: ClientAuthService) {
     this.cartItemsCount$ = this.basketService.basketItemsCount$;
   }
 
   ngOnInit() {
     initFlowbite();
+
+    this.clientAuth.loggedIn$.subscribe(ClientLoggedIn=>{
+      this.clientLoggedIn=ClientLoggedIn;
+    })
+  }
+
+  logout(){
+    this.clientAuth.logout()
   }
 }

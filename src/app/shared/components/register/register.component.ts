@@ -16,7 +16,7 @@ export class RegisterComponent {
   lastName: string = '';
   username: string = '';
   email: string = '';
-  phoneNumber: number = +'';
+  phoneNumber: number |undefined;
   password: string = '';
 
   constructor(private authService: AuthService) {
@@ -28,7 +28,7 @@ export class RegisterComponent {
       this.lastName,
       this.username,
       this.email,
-      this.phoneNumber,
+      this.phoneNumber!,
       this.password
     );
   }

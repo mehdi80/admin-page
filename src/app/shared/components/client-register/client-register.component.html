@@ -1,0 +1,51 @@
+<div class=" p-8 bg-green-400 rounded-3xl shadow-xl max-w-md w-full">
+  <h1 class="text-4xl text-green-100 font-bold text-center mb-8 neon-text">Client Sign Up</h1>
+  <form class="space-y-6" (ngSubmit)="onSubmit()">
+    <div class="flex flex-row gap-2">
+      <input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="First Name"
+        required
+        [(ngModel)]="firstName"
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+
+      <input
+        id="lastName"
+        name="lastName"
+        type="text"
+        required
+        [(ngModel)]="lastName"
+        placeholder="Last Name"
+        class=" w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+
+    </div>
+    <div class="flex flex-row gap-2">
+
+      <input
+        id="phone"
+        name="phone"
+        type="text"
+        required
+        [(ngModel)]="phoneNumber"
+        placeholder="Phone Number"
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+
+    </div>
+    <div class="flex flex-row">
+      <input
+        id="password"
+        name="password"
+        type="password"
+        required
+        [(ngModel)]="password"
+        placeholder="Password"
+        class="w-full text-green-400 bg-green-100 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+
+    </div>
+    <button type="submit" class="w-full bg-green-200 font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none">
+      Sign Up
+    </button>
+  </form>
+</div>

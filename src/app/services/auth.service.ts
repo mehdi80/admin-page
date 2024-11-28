@@ -20,9 +20,7 @@ export class AuthService {
     if (login){
       this.loggedInSubject.next(true);
     }
-
   }
-
 
   private getUserLists(): LocalStorageUser[] {
     return this.localStorageService.getLocalStorage('users');

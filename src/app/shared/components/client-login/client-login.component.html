@@ -1,0 +1,38 @@
+<div class=" p-8 bg-green-400 rounded-3xl shadow-xl max-w-md w-full">
+  <h1 class="text-4xl text-green-100 font-bold text-center mb-8 neon-text">Client login</h1>
+  <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <input
+        id="phone"
+        formControlName="phone"
+        name="phone"
+        required
+        type="text"
+        placeholder="phone number"
+        class="w-full bg-green-100 text-green-400 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+    </div>
+    <div>
+      <input
+        id="password"
+        name="password"
+        required
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        class="w-full text-green-400 bg-green-100 px-4 py-3 rounded-lg focus:outline-none transition-all duration-300">
+    </div>
+    <div class="flex flex-row gap-2 justify-center">
+      <button type="submit"
+              class="bg-green-200 font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none">
+        Login
+      </button>
+      <button
+        routerLink="/auth/client-register"
+        type="submit"
+        class="bg-green-200 font-bold p-3 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none">
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+
